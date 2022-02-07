@@ -71600,11 +71600,6 @@
           // Enable pinch
           this.hammer.get("pinch").set({ enable: true });
 
-          // Handle double tap
-          this.hammer.on("doubletap", function (ev) {
-            instance.zoomIn();
-          });
-
           // Handle pan
           this.hammer.on("panstart panmove", function (ev) {
             // On pan start reset panned variables
@@ -71655,7 +71650,7 @@
         zoomScaleSensitivity: 0.3,
         maxZoom: 20,
         customEventsHandler: eventsHandler,
-        refreshRate: 60
+        refreshRate: 9999
       });
     </script>
   </body>
