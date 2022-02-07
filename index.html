@@ -1,11 +1,15 @@
 <html>
   <style>
-    body { margin: 0 auto; }
+    body { margin: 0 auto; cursor: grab;}
     svg {width: 100%; height: 100%;}
   </style>
 
+  <head>
+    <script src="svg-pan-zoom.min.js"></script>
+  </head>
+
   <body>
-    <svg width="28121" height="18916" viewBox="0 0 28121 18916" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="28121" height="18916" viewBox="0 0 28121 18916" fill="none" xmlns="http://www.w3.org/2000/svg" id="wheres-wally">
       <rect width="28120.9" height="18916" fill="white"/>
       <path fill-rule="evenodd" clip-rule="evenodd" d="M5687.49 12536.2C5687.49 13110.6 5312.38 13368.4 4851.48 13368.4C4390.63 13368.4 4015.51 13110.6 4015.51 12536.2C4015.51 11466.1 4471.75 10466.7 4851.48 10466.7C5231.26 10466.7 5687.49 11466.1 5687.49 12536.2Z" fill="#9EBB6F"/>
       <path d="M4851.5 11606.1V13845.2" stroke="#A96F52" stroke-width="42" stroke-linecap="square"/>
@@ -13262,6 +13266,16 @@
       </clipPath>
       </defs>
       </svg>
-      
+
+      <script>
+        svgPanZoom('#wheres-wally', {
+          zoomEnabled: true,
+          controlIconsEnabled: true,
+          fit: true,
+          center: true,
+          zoomScaleSensitivity: 0.3,
+          maxZoom: 20
+        });
+      </script>
   </body>
 </html>
