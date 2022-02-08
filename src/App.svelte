@@ -1,6 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import Building from './building.svelte';
+  import Building from './icons/building.svelte';
+  import Pinch from './icons/pinch.svelte';
+  import Reset from './icons/reset.svelte';
   import svgPanZoom from 'svg-pan-zoom';
   import Hammer from 'hammerjs';
 
@@ -95,38 +97,38 @@
 </script>
 
 <div class="container">
-  <main>
-    <h1>
-      WHERE'S<br />
-      LOVERIDGE
-    </h1>
-    <div class="fence">
-      <Building class="building" />
-    </div>
-    <p>
-      This is a where’s wally inspired illustration. The characters in here are
-      everyone from Hatchd and Adapptor plus some of our close clients.
-    </p>
-  </main>
+  <h1>
+    WHERE'S<br />
+    LOVERIDGE
+  </h1>
+
+  <Building class="building" />
+
+  <p>
+    This is a where’s wally inspired illustration. The characters in here are
+    everyone from Hatchd and Adapptor plus some of our close clients.
+  </p>
+
+  <div class='pinchTipContainer'>
+    <Pinch />
+    <p>Pinch to zoom in and out</p>
+  </div>
 
   <div class="controls-container">
     <button class="button icon-button" on:click={handleZoomIn}>+</button>
     <button class="button icon-button" on:click={handleZoomOut}>-</button>
-    <button class="button" on:click={handleZoomReset}>Reset</button>
+    <button class="button reset-button" on:click={handleZoomReset}><Reset /> RESET</button>
   </div>
 </div>
 
 <style>
-  .container {
-    display: grid;
-    align-content: center;
-    position: relative;
-    height: 100vh;
-    width: 100vw;
+  html {
+    box-sizing: border-box;
   }
-
-  .fence {
-    background: linear-gradient(0deg, #cae2ff 50%, rgba(204, 227, 255, 0) 100%);
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
   }
 
   h1,
@@ -136,10 +138,16 @@
     padding: 0;
   }
 
-  main {
+  .container {
     display: grid;
+    align-content: center;
     justify-items: center;
     gap: 54px;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    grid-template-rows: auto 1fr auto;
+    padding: 24px;
   }
 
   h1 {
@@ -163,10 +171,49 @@
     max-width: 466px;
   }
 
+  .pinchTipContainer {
+    display: none;
+  }
+
+  @media only screen and (max-width: 811px) {
+    .container {
+      padding: 24px 0 0;
+      align-content: start;
+      grid-template-rows: auto auto auto auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      line-height: 200%;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 150%;
+    }
+
+    .pinchTipContainer {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
   :global(.building) {
-    width: 100%;
-    height: auto;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
     cursor: grab;
+    background: linear-gradient(0deg, #cae2ff 50%, rgba(204, 227, 255, 0) 100%);
+  }
+
+  @media only screen and (max-width: 811px) {
+    :global(.building) {
+      height: auto;
+      width: 100%;
+      max-width: 100%;
+    }
   }
 
   .controls-container {
@@ -188,10 +235,36 @@
     margin: 0;
     margin-top: 24px;
     cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 150%;
+    letter-spacing: 1.9px;
+    color: #312F32;
   }
 
   .icon-button {
     width: 40px;
     margin-top: 18px;
+  }
+
+  .reset-button {
+    padding: 0 12px;
+  }
+
+  @media only screen and (max-width: 811px) {
+    .icon-button {
+      display: none;
+    }
+
+    .controls-container {
+      bottom: 48px;
+      right: calc(50% - (114px / 2));
+    }
   }
 </style>
