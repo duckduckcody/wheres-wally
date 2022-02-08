@@ -1,4 +1,4 @@
-<svg width="26205" height="12730" viewBox="0 0 26205 12730" fill="none" xmlns="http://www.w3.org/2000/svg" id="wheres-wally" class={$$props.class}>
+<svg width="26205" height="12730" viewBox="0 0 26205 12730" fill="none" xmlns="http://www.w3.org/2000/svg" class={$$props.class}>
   <path fill-rule="evenodd" clip-rule="evenodd" d="M4584.49 10107.2C4584.49 10681.6 4209.38 10939.4 3748.48 10939.4C3287.63 10939.4 2912.51 10681.6 2912.51 10107.2C2912.51 9037.06 3368.75 8037.75 3748.48 8037.75C4128.26 8037.75 4584.49 9037.06 4584.49 10107.2" fill="#9EBB6F"/>
   <path d="M3748.5 9177.08V11416.2" stroke="#A96F52" stroke-width="42" stroke-linecap="square"/>
   <path d="M3763.71 10562.4L4074.17 10251.9" stroke="#A96F52" stroke-width="16" stroke-linecap="square"/>

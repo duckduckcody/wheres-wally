@@ -4,6 +4,7 @@
   import Pinch from './icons/pinch.svelte';
   import Reset from './icons/reset.svelte';
   import svgPanZoom from 'svg-pan-zoom';
+  import Panzoom from '@panzoom/panzoom'
   import Hammer from 'hammerjs';
 
   var wally = undefined;
@@ -77,17 +78,22 @@
   };
 
   onMount(async () => {
-    wally = svgPanZoom('#wheres-wally', {
-      zoomEnabled: true,
-      controlIconsEnabled: false,
-      fit: true,
-      center: true,
-      contain: true,
-      zoomScaleSensitivity: 0.3,
-      maxZoom: 20,
-      minZoom: 1,
-      customEventsHandler: eventsHandler,
-      refreshRate: 144,
+    // wally = svgPanZoom('#wheres-wally', {
+    //   zoomEnabled: true,
+    //   controlIconsEnabled: false,
+    //   fit: true,
+    //   center: true,
+    //   contain: true,
+    //   zoomScaleSensitivity: 0.3,
+    //   maxZoom: 20,
+    //   minZoom: 1,
+    //   customEventsHandler: eventsHandler,
+    //   refreshRate: 144,
+    // });
+
+    const elem = document.getElementById('wheres-wally');
+    wally = Panzoom(elem, {
+      maxScale: 5
     });
   });
 
@@ -96,7 +102,7 @@
   const handleZoomReset = () => wally.reset();
 </script>
 
-<div class="container">
+<div class="container" id="wheres-wally">
   <h1>
     WHERE'S<br />
     LOVERIDGE
@@ -113,12 +119,12 @@
     <Pinch />
     <p>Pinch to zoom in and out</p>
   </div>
+</div>
 
-  <div class="controls-container">
-    <button class="button icon-button" on:click={handleZoomIn}>+</button>
-    <button class="button icon-button" on:click={handleZoomOut}>-</button>
-    <button class="button reset-button" on:click={handleZoomReset}><Reset /> RESET</button>
-  </div>
+<div class="controls-container">
+  <button class="button icon-button" on:click={handleZoomIn}>+</button>
+  <button class="button icon-button" on:click={handleZoomOut}>-</button>
+  <button class="button reset-button" on:click={handleZoomReset}><Reset /> RESET</button>
 </div>
 
 <style>
