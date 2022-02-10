@@ -13,6 +13,7 @@
       maxScale: 10,
       minScale: 1,
       contain: "outside",
+      touchAction: "pinch",
     });
 
     const parent = elem.parentElement;
@@ -110,12 +111,14 @@
   @media only screen and (max-width: 811px) {
     .container {
       padding: 24px 0 0;
+      gap: 16px;
       align-content: start;
       grid-template-rows: auto auto auto auto;
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 24px;
+      letter-spacing: 0.4em;
       line-height: 200%;
     }
 
@@ -194,7 +197,7 @@
     }
 
     .controls-container {
-      bottom: 48px;
+      bottom: 24px;
       right: calc(50% - (114px / 2));
     }
   }
