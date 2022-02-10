@@ -15,6 +15,7 @@
       contain: "outside",
       touchAction: "",
       animate: true,
+      roundPixels: true,
     });
 
     const parent = elem.parentElement;
