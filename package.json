@@ -28,11 +28,6 @@
   },
   "dependencies": {
     "@panzoom/panzoom": "^4.4.4",
-    "@types/hammerjs": "^2.0.41",
-    "hammerjs": "^2.0.8",
-    "prettier": "^2.5.1",
-    "prettier-plugin-svelte": "^2.6.0",
-    "sirv-cli": "^2.0.0",
-    "svg-pan-zoom": "^3.6.1"
+    "sirv-cli": "^2.0.0"
   }
 }

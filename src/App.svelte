@@ -1,100 +1,22 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import Building from './icons/building.svelte';
-  import Pinch from './icons/pinch.svelte';
-  import Reset from './icons/reset.svelte';
-  import svgPanZoom from 'svg-pan-zoom';
-  import Panzoom from '@panzoom/panzoom'
-  import Hammer from 'hammerjs';
+  import { onMount } from "svelte";
+  import Building from "./icons/building.svelte";
+  import Pinch from "./icons/pinch.svelte";
+  import Reset from "./icons/reset.svelte";
+  import Panzoom from "@panzoom/panzoom";
 
   var wally = undefined;
-  var eventsHandler;
-
-  eventsHandler = {
-    haltEventListeners: [
-      'touchstart',
-      'touchend',
-      'touchmove',
-      'touchleave',
-      'touchcancel',
-    ],
-    init: function (options) {
-      var instance = options.instance,
-        initialScale = 1,
-        pannedX = 0,
-        pannedY = 0;
-
-      // Init Hammer
-      // Listen only for pointer and touch events
-      this.hammer = new Hammer(options.svgElement, {
-        inputClass: Hammer.PointerEventInput
-          ? Hammer.PointerEventInput
-          : Hammer.TouchInput,
-      });
-
-      // Handle pan
-      this.hammer.on('panstart panmove', function (ev) {
-        // On pan start reset panned variables
-        if (ev.type === 'panstart') {
-          pannedX = 0;
-          pannedY = 0;
-        }
-
-        // Pan only the difference
-        instance.panBy({ x: ev.deltaX - pannedX, y: ev.deltaY - pannedY });
-        pannedX = ev.deltaX;
-        pannedY = ev.deltaY;
-      });
-
-      // Enable pinch
-      this.hammer.get('pinch').set({ enable: true });
-
-      // Handle pinch
-      this.hammer.on('pinchstart pinchmove', function (ev) {
-        // On pinch start remember initial zoom
-        if (ev.type === 'pinchstart') {
-          initialScale = instance.getZoom();
-          instance.zoomAtPoint(initialScale * ev.scale, {
-            x: ev.center.x,
-            y: ev.center.y,
-          });
-        }
-
-        instance.zoomAtPoint(initialScale * ev.scale, {
-          x: ev.center.x,
-          y: ev.center.y,
-        });
-      });
-
-      // Prevent moving the page on some devices when panning over SVG
-      options.svgElement.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-      });
-    },
-
-    destroy: function () {
-      this.hammer.destroy();
-    },
-  };
 
   onMount(async () => {
-    // wally = svgPanZoom('#wheres-wally', {
-    //   zoomEnabled: true,
-    //   controlIconsEnabled: false,
-    //   fit: true,
-    //   center: true,
-    //   contain: true,
-    //   zoomScaleSensitivity: 0.3,
-    //   maxZoom: 20,
-    //   minZoom: 1,
-    //   customEventsHandler: eventsHandler,
-    //   refreshRate: 144,
-    // });
-
-    const elem = document.getElementById('wheres-wally');
+    const elem = document.getElementById("wheres-wally");
     wally = Panzoom(elem, {
-      maxScale: 5
+      maxScale: 10,
+      minScale: 1,
+      contain: "outside",
     });
+
+    const parent = elem.parentElement;
+    parent.addEventListener("wheel", wally.zoomWithWheel);
   });
 
   const handleZoomIn = () => wally.zoomIn();
@@ -115,7 +37,7 @@
     everyone from Hatchd and Adapptor plus some of our close clients.
   </p>
 
-  <div class='pinchTipContainer'>
+  <div class="pinchTipContainer">
     <Pinch />
     <p>Pinch to zoom in and out</p>
   </div>
@@ -124,13 +46,16 @@
 <div class="controls-container">
   <button class="button icon-button" on:click={handleZoomIn}>+</button>
   <button class="button icon-button" on:click={handleZoomOut}>-</button>
-  <button class="button reset-button" on:click={handleZoomReset}><Reset /> RESET</button>
+  <button class="button reset-button" on:click={handleZoomReset}
+    ><Reset /> RESET</button
+  >
 </div>
 
 <style>
-  html {
+  :global(html) {
     box-sizing: border-box;
   }
+
   *,
   *:before,
   *:after {
@@ -154,10 +79,11 @@
     width: 100vw;
     grid-template-rows: auto 1fr auto;
     padding: 24px;
+    cursor: grab;
   }
 
   h1 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: bold;
     text-align: center;
     letter-spacing: 0.8em;
@@ -167,7 +93,7 @@
   }
 
   p {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: normal;
     text-align: center;
     font-size: 18px;
@@ -210,7 +136,6 @@
     height: 100%;
     width: auto;
     max-width: 100%;
-    cursor: grab;
     background: linear-gradient(0deg, #cae2ff 50%, rgba(204, 227, 255, 0) 100%);
   }
 
@@ -246,12 +171,12 @@
     align-items: center;
     justify-content: space-around;
 
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: bold;
     font-size: 11px;
     line-height: 150%;
     letter-spacing: 1.9px;
-    color: #312F32;
+    color: #312f32;
   }
 
   .icon-button {
