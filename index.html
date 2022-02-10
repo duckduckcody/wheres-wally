@@ -1,162 +1,173 @@
-<html>
-  <style>
-    body, h1, p {
-      margin: 0;
-    }
-
-    body {
-      width: 100vw;
-      height: 100vh;
-      display: grid;
-      align-content: center;
-      position: relative;
-    }
-
-    .building-container {
-      position: relative;
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-      gap: 54px;
-    }
-
-    @media only screen and (max-width: 818px) {
-      body {
-        align-content: start;
-      }
-
-      .building-container {
-        gap: 16px;
-        padding: 16px 0 0;
-      }
-    }
-
-    .wheres-wally {
-      width: 100%;
-      height: auto;
-      cursor: grab;
-      background: linear-gradient(0deg, #CAE2FF 50%, rgba(204, 227, 255, 0) 100%)
-    }
-
-    h1 {
-      letter-spacing: 0.8em;
-      color: #000000;
-      font-size: 48px;
-      line-height: 200%;
-      font-weight: bold;
-      font-family: 'Montserrat', sans-serif;
-      text-align: center;
-    }
-
-    p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 18px;
-      line-height: 150%;
-      letter-spacing: 1.9px;
-      color: #000000;
-      max-width: 475px;
-      text-align: center;
-    }
-
-    
-    @media only screen and (max-width: 818px) {
-      h1 {
-        letter-spacing: 0.8em;
-        font-size: 24px;
-      }
-
-      p {
-        font-size: 12px;
-        padding: 0 16px;
-      }
-    }
-
-    .controls-container {
-      position: absolute;
-      bottom: 32px;
-      right: 28px;
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: end;
-      gap: 18px;
-    }
-
-    .button {
-      font-family: 'Montserrat', sans-serif;
-      filter: drop-shadow(0px 6.31783px 12.6357px rgba(170, 213, 255, 0.5));
-      background: #F4F4F4;
-      border: 1px solid #000000;
-      box-sizing: border-box;
-      border-radius: 2.5px;
-      height: 40px;
-      cursor: pointer;
-    }
-
-    .button:hover {
-      background: #cacaca;
-    }
-
-    .button:active {
-      background: #a1a1a1;
-    }
-
-    .icon-button {
-      width: 40px;
-    }
-
-    .reset-button {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: space-around;
-      gap: 10px;
-      padding: 0 12px;
-    }
-
-    .refresh-icon {
-      width: 15px;
-      height: 15px;
-    }
-
-    @media only screen and (max-width: 818px) {
-      .controls-container {
-        bottom: 24px;
-        right: calc(50% - (120px / 2));
-      }
-
-      .reset-button {
-        width: 120px;
-      }
-
-      .icon-button {
-        display: none;
-      }
-    }
-
-    .pinch-hint {
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    .pinch-hint-text {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: bold;
-      font-size: 11px;
-      line-height: 150%;
-      letter-spacing: 1.9px;
-      color: #000000;
-    }
-  </style>
-
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <title>Where's Loveridge</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
     <script src="https://unpkg.com/@panzoom/panzoom@4.4.4/dist/panzoom.min.js"></script>
+
+    <style>
+      body, h1, p {
+        margin: 0;
+      }
+  
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        align-content: center;
+        position: relative;
+      }
+  
+      .building-container {
+        position: relative;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        gap: 54px;
+      }
+  
+      @media only screen and (max-width: 818px) {
+        body {
+          align-content: start;
+        }
+  
+        .building-container {
+          gap: 16px;
+          padding: 16px 0 0;
+        }
+      }
+  
+      .wheres-wally {
+        width: 100%;
+        height: auto;
+        cursor: grab;
+        background: linear-gradient(0deg, #CAE2FF 50%, rgba(204, 227, 255, 0) 100%)
+      }
+  
+      h1 {
+        letter-spacing: 0.8em;
+        color: #000000;
+        font-size: 48px;
+        line-height: 200%;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+      }
+  
+      p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        line-height: 150%;
+        letter-spacing: 1.9px;
+        color: #000000;
+        max-width: 475px;
+        text-align: center;
+      }
+  
+      
+      @media only screen and (max-width: 818px) {
+        h1 {
+          letter-spacing: 0.8em;
+          font-size: 24px;
+        }
+  
+        p {
+          font-size: 12px;
+          padding: 0 16px;
+        }
+      }
+  
+      .controls-container {
+        position: absolute;
+        bottom: 32px;
+        right: 28px;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: end;
+        gap: 18px;
+      }
+  
+      .button {
+        font-family: 'Montserrat', sans-serif;
+        filter: drop-shadow(0px 6.31783px 12.6357px rgba(170, 213, 255, 0.5));
+        background: #F4F4F4;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        border-radius: 2.5px;
+        height: 40px;
+        cursor: pointer;
+      }
+  
+      .button:hover {
+        background: #cacaca;
+      }
+  
+      .button:active {
+        background: #a1a1a1;
+      }
+  
+      .icon-button {
+        width: 40px;
+      }
+  
+      .reset-button {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-around;
+        gap: 10px;
+        padding: 0 12px;
+      }
+  
+      .refresh-icon {
+        width: 15px;
+        height: 15px;
+      }
+  
+      @media only screen and (max-width: 818px) {
+        .controls-container {
+          bottom: 24px;
+          right: calc(50% - (120px / 2));
+        }
+  
+        .reset-button {
+          width: 120px;
+        }
+  
+        .icon-button {
+          display: none;
+        }
+      }
+  
+      .pinch-hint {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        gap: 8px;
+        margin-top: 16px;
+      }
+  
+      .pinch-hint-text {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        font-size: 11px;
+        line-height: 150%;
+        letter-spacing: 1.9px;
+        color: #000000;
+      }
+    </style>
   </head>
+
+
 
   <body>
     <div class='building-container' id="scene">
