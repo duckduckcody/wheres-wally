@@ -13,7 +13,8 @@
       maxScale: 10,
       minScale: 1,
       contain: "outside",
-      touchAction: "pinch",
+      touchAction: "",
+      panOnlyWhenZoomed: true,
     });
 
     const parent = elem.parentElement;
