@@ -72421,23 +72421,23 @@
     </div>
 
     <script>
-      const elem = document.getElementById('scene')
-      const panzoom = Panzoom(elem, {
+      const elem = document.getElementById('scene');
+      const wally = Panzoom(elem, {
         maxScale: 5
-      })
+      });
+      elem.parentElement.addEventListener('wheel', wally.zoomWithWheel)
 
-      // document.getElementById('reset-button').addEventListener('click', function() {
-      //   console.log('wally', wally);
-      //   wally.zoomTo(0, 0, 1);
-      // }, false);
+      document.getElementById('reset-button').addEventListener('click', function() {
+        wally.reset();
+      }, false);
 
-      // document.getElementById('bigger-button').addEventListener('click', function() {
-      //   wally.zoomTo(0, 0, 2);
-      // }, false);
+      document.getElementById('bigger-button').addEventListener('click', function() {
+        wally.zoomIn();
+      }, false);
 
-      // document.getElementById('smaller-button').addEventListener('click', function() {
-      //   wally.zoomTo(0, 0, 0.5);
-      // }, false);
+      document.getElementById('smaller-button').addEventListener('click', function() {
+        wally.zoomOut();
+      }, false);
     </script>
   </body>
 </html>
