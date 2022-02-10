@@ -10,11 +10,11 @@
   onMount(async () => {
     const elem = document.getElementById("wheres-wally");
     wally = Panzoom(elem, {
-      maxScale: 10,
+      maxScale: 20,
       minScale: 1,
       contain: "outside",
       touchAction: "",
-      panOnlyWhenZoomed: true,
+      animate: true,
     });
 
     const parent = elem.parentElement;
