@@ -125,6 +125,7 @@
     p {
       font-size: 12px;
       line-height: 150%;
+      padding: 16px;
     }
 
     .pinchTipContainer {
