@@ -12,10 +12,12 @@
       position: relative;
     }
 
-    .container {
+    .building-container {
       position: relative;
-      display: grid;
-      justify-items: center;
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 54px;
+      align-items: center;
     }
 
     svg {
@@ -28,6 +30,7 @@
       letter-spacing: 0.8em;
       color: #000000;
       font-size: 48px;
+      line-height: 200%;
       font-weight: bold;
       font-family: 'Montserrat', sans-serif;
       text-align: center;
@@ -44,10 +47,11 @@
 
     .controls-container {
       position: absolute;
-      bottom: 0;
-      right: 0;
+      bottom: 32px;
+      right: 24px;
       display: flex;
       flex-flow: column nowrap;
+      gap: 18px;
     }
   </style>
 
@@ -55,12 +59,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
-    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
-    <!-- <script src="hammer.min.js"></script> -->
+    <script src="https://unpkg.com/@panzoom/panzoom@4.4.4/dist/panzoom.min.js"></script>
   </head>
 
   <body>
-    <div class='container' id="scene">
+    <div class='building-container' id="scene">
       <h1>WHERE'S<br />LOVERIDGE</h1>
       <svg
       id="wheres-wally"
@@ -72418,104 +72421,22 @@
     </div>
 
     <script>
-      // just grab a DOM element
-      var element = document.querySelector('#scene');
-
-      // And pass it to panzoom
-      panzoom(element);
-
-      // var eventsHandler;
-
-      // eventsHandler = {
-      //   haltEventListeners: [
-      //     'touchstart',
-      //     'touchend',
-      //     'touchmove',
-      //     'touchleave',
-      //     'touchcancel',
-      //   ],
-      //   init: function (options) {
-      //     var instance = options.instance,
-      //       initialScale = 1,
-      //       pannedX = 0,
-      //       pannedY = 0;
-
-      //     // Init Hammer
-      //     // Listen only for pointer and touch events
-      //     this.hammer = Hammer(options.svgElement, {
-      //       inputClass: Hammer.SUPPORT_POINTER_EVENTS
-      //         ? Hammer.PointerEventInput
-      //         : Hammer.TouchInput,
-      //     });
-
-      //     // Handle pan
-      //     this.hammer.on('panstart panmove', function (ev) {
-      //       // On pan start reset panned variables
-      //       if (ev.type === 'panstart') {
-      //         pannedX = 0;
-      //         pannedY = 0;
-      //       }
-
-      //       // Pan only the difference
-      //       instance.panBy({ x: ev.deltaX - pannedX, y: ev.deltaY - pannedY });
-      //       pannedX = ev.deltaX;
-      //       pannedY = ev.deltaY;
-      //     });
-
-      //     // Enable pinch
-      //     this.hammer.get('pinch').set({ enable: true });
-
-      //     // Handle pinch
-      //     this.hammer.on('pinchstart pinchmove', function (ev) {
-      //       // On pinch start remember initial zoom
-      //       if (ev.type === 'pinchstart') {
-      //         initialScale = instance.getZoom();
-      //         instance.zoomAtPoint(initialScale * ev.scale, {
-      //           x: ev.center.x,
-      //           y: ev.center.y,
-      //         });
-      //       }
-
-      //       instance.zoomAtPoint(initialScale * ev.scale, {
-      //         x: ev.center.x,
-      //         y: ev.center.y,
-      //       });
-      //     });
-
-      //     // Prevent moving the page on some devices when panning over SVG
-      //     options.svgElement.addEventListener('touchmove', function (e) {
-      //       e.preventDefault();
-      //     });
-      //   },
-
-      //   destroy: function () {
-      //     this.hammer.destroy();
-      //   },
-      // };
-
-      // var wally = svgPanZoom('#wheres-wally', {
-      //   zoomEnabled: true,
-      //   controlIconsEnabled: false,
-      //   fit: true,
-      //   center: true,
-      //   contain: true,
-      //   zoomScaleSensitivity: 0.3,
-      //   maxZoom: 20,
-      //   minZoom: 1,
-      //   customEventsHandler: eventsHandler,
-      //   refreshRate: 144,
-      // });
+      const elem = document.getElementById('scene')
+      const panzoom = Panzoom(elem, {
+        maxScale: 5
+      })
 
       // document.getElementById('reset-button').addEventListener('click', function() {
-      //   wally.reset()
+      //   console.log('wally', wally);
+      //   wally.zoomTo(0, 0, 1);
       // }, false);
 
       // document.getElementById('bigger-button').addEventListener('click', function() {
-      //   wally.zoomIn()
+      //   wally.zoomTo(0, 0, 2);
       // }, false);
 
       // document.getElementById('smaller-button').addEventListener('click', function() {
-      //   wally.zoomOut()
+      //   wally.zoomTo(0, 0, 0.5);
       // }, false);
     </script>
   </body>
