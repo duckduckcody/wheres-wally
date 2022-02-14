@@ -48,6 +48,7 @@
   
       .wheres-wally {
         width: 100%;
+        max-width: 1200px;
         height: auto;
         cursor: grab;
         background: linear-gradient(0deg, #CAE2FF 50%, rgba(204, 227, 255, 0) 100%)
@@ -144,6 +145,10 @@
         width: 15px;
         height: 15px;
       }
+      
+      .pinch-hint {
+        display: none;
+      }
   
       @media only screen and (max-width: 818px) {
         .controls-container {
@@ -158,28 +163,26 @@
         .icon-button {
           display: none;
         }
-      }
-  
-      .pinch-hint {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        gap: 8px;
-        margin-top: 16px;
-      }
-  
-      .pinch-hint-text {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: bold;
-        font-size: 11px;
-        line-height: 150%;
-        letter-spacing: 1.9px;
-        color: #000000;
+
+        .pinch-hint {
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          gap: 8px;
+          margin-top: 16px;
+        }
+    
+        .pinch-hint-text {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: bold;
+          font-size: 11px;
+          line-height: 150%;
+          letter-spacing: 1.9px;
+          color: #000000;
+        }
       }
     </style>
   </head>
-
-
 
   <body>
     <div class='building-container' id="scene">
